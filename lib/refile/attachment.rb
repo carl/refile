@@ -55,6 +55,7 @@ module Refile
         end
 
         define_method "#{name}=" do |value|
+          send(:"#{name}_id_will_change!")
           send(attacher).set(value)
         end
 
@@ -63,6 +64,7 @@ module Refile
         end
 
         define_method "remove_#{name}=" do |remove|
+          send(:"#{name}_id_will_change!")
           send(attacher).remove = remove
         end
 
@@ -71,6 +73,7 @@ module Refile
         end
 
         define_method "remote_#{name}_url=" do |url|
+          send(:"#{name}_id_will_change!")
           send(attacher).download(url)
         end
 
