@@ -138,7 +138,7 @@ module Refile
     end
 
     def verified?
-      base_path = request.path.gsub(::File.join(request.script_name, params[:token]), "")
+      base_path = URI.decode(request.path.gsub(::File.join(request.script_name, params[:token]), ""))
 
       Refile.valid_token?(base_path, params[:token])
     end
